@@ -1,0 +1,21 @@
+name: Build EXE
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install selenium python-docx pyinstaller
+      - run: pyinstaller --noconfirm --onefile --windowed --name KroneMittagstisch --collect-all selenium --collect-data docx app.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: KroneMittagstisch
+          path: dist/KroneMittagstisch.exe
