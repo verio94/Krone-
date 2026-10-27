@@ -13,8 +13,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install selenium python-docx pyinstaller
-      - run: pyinstaller --noconfirm --onefile --windowed --name KroneMittagstisch --collect-all selenium --collect-data docx app.py
+      - run: pip install selenium python-docx reportlab pyinstaller
+      - run: pyinstaller --noconfirm --onefile --windowed --name KroneMittagstisch --collect-all selenium --collect-data docx --collect-data reportlab app.py
       - uses: actions/upload-artifact@v4
         with:
           name: KroneMittagstisch
